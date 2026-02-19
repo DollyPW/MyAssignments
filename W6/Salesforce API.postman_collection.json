@@ -714,6 +714,413 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "Case",
+      "item": [
+        {
+          "name": "PostCase",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{SF_access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n   // \"ContactId\": \"Test Leaf\",\r\n    \"Origin\":\"Email\",\r\n    \"Status\":\"Escalated\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{SF_URL}}/services/data/v65.0/sobjects/Case",
+              "host": [
+                "{{SF_URL}}"
+              ],
+              "path": [
+                "services",
+                "data",
+                "v65.0",
+                "sobjects",
+                "Case"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get CaseId",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let caseNum = pm.response.json().CaseNumber;\r",
+                  "console.log(caseNum);\r",
+                  "pm.environment.set(\"caseNum\",caseNum)\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{SF_access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{SF_URL}}/services/data/v65.0/sobjects/Case/{{id}}",
+              "host": [
+                "{{SF_URL}}"
+              ],
+              "path": [
+                "services",
+                "data",
+                "v65.0",
+                "sobjects",
+                "Case",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CaseDelete",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"check statuscode\",function(){\r",
+                  "    pm.response.to.have.status(204)\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{SF_access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{SF_URL}}/services/data/v65.0/sobjects/Case/{{id}}",
+              "host": [
+                "{{SF_URL}}"
+              ],
+              "path": [
+                "services",
+                "data",
+                "v65.0",
+                "sobjects",
+                "Case",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Contact",
+      "item": [
+        {
+          "name": "GetContact",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Check Contact Post status as 200\", function(){\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let response = pm.response.json();\r",
+                  "let Cnt_id = response.recentItems[0].Id;\r",
+                  "pm.environment.set(\"Cnt_id\",Cnt_id);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{SF_access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{SF_URL}}/services/data/v65.0/sobjects/Contact",
+              "host": [
+                "{{SF_URL}}"
+              ],
+              "path": [
+                "services",
+                "data",
+                "v65.0",
+                "sobjects",
+                "Contact"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PatchContact",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Check status of Patch Contact 204\", function(){\r",
+                  "    pm.response.to.have.status(204);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{SF_access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Phone\":123456,\r\n    \"Email\":\"teslf@Tf.com\",\r\n    \"Title\":\"Mrs\",\r\n    \"Department\":\"Test\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{SF_URL}}/services/data/v65.0/sobjects/Contact/{{Cnt_id}}",
+              "host": [
+                "{{SF_URL}}"
+              ],
+              "path": [
+                "services",
+                "data",
+                "v65.0",
+                "sobjects",
+                "Contact",
+                "{{Cnt_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetContact Copy",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Check Contact Post status as 200\", function(){\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let response = pm.response.json();\r",
+                  "let Cnt_id = response.recentItems[0].Id;\r",
+                  "pm.environment.set(\"Cnt_id\",Cnt_id);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{SF_access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{SF_URL}}/services/data/v65.0/sobjects/Contact/{{Cnt_id}}",
+              "host": [
+                "{{SF_URL}}"
+              ],
+              "path": [
+                "services",
+                "data",
+                "v65.0",
+                "sobjects",
+                "Contact",
+                "{{Cnt_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DeleteContact",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Check Contact Post status as 204\", function(){\r",
+                  "    pm.response.to.have.status(204);\r",
+                  "});\r",
+                  "\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{SF_access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{SF_URL}}/services/data/v65.0/sobjects/Contact/{{Cnt_id}}",
+              "host": [
+                "{{SF_URL}}"
+              ],
+              "path": [
+                "services",
+                "data",
+                "v65.0",
+                "sobjects",
+                "Contact",
+                "{{Cnt_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ],
   "auth": {
