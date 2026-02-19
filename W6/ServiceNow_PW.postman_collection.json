@@ -8,324 +8,663 @@
   },
   "item": [
     {
-      "name": "01_CreateIncident",
-      "request": {
-        "auth": {
-          "type": "basic",
-          "basic": [
+      "name": "ChangeRequest",
+      "item": [
+        {
+          "name": "Post_CR",
+          "event": [
             {
-              "key": "password",
-              "value": "%eBzU$kw5VC8",
-              "type": "string"
-            },
-            {
-              "key": "username",
-              "value": "admin",
-              "type": "string"
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Change Request created status check 201\",function(){\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "let sys_id = pm.response.json().result.sys_id;\r",
+                  "pm.environment.set(\"sys_id\",sys_id);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
             }
-          ]
-        },
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json",
-            "type": "text"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n    \"short_description\": \"Device issue-Laptop created during TL session\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "https://dev267889.service-now.com/api/now/table/incident",
-          "protocol": "https",
-          "host": [
-            "dev267889",
-            "service-now",
-            "com"
           ],
-          "path": [
-            "api",
-            "now",
-            "table",
-            "incident"
-          ]
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "%eBzU$kw5VC8",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"short_description\": \"Test for changeRequest for posting\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://dev267889.service-now.com/api/now/table/change_request",
+              "protocol": "https",
+              "host": [
+                "dev267889",
+                "service-now",
+                "com"
+              ],
+              "path": [
+                "api",
+                "now",
+                "table",
+                "change_request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get_CR",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "%eBzU$kw5VC8",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://dev267889.service-now.com/api/now/table/change_request/{{sys_id}}",
+              "protocol": "https",
+              "host": [
+                "dev267889",
+                "service-now",
+                "com"
+              ],
+              "path": [
+                "api",
+                "now",
+                "table",
+                "change_request",
+                "{{sys_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Put_CR",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "%eBzU$kw5VC8",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"short_description\": \"Test for changeRequest for\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://dev267889.service-now.com/api/now/table/change_request/{{sys_id}}",
+              "protocol": "https",
+              "host": [
+                "dev267889",
+                "service-now",
+                "com"
+              ],
+              "path": [
+                "api",
+                "now",
+                "table",
+                "change_request",
+                "{{sys_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Patch_CR",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "%eBzU$kw5VC8",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"short_description\": \"Changed the short desc\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://dev267889.service-now.com/api/now/table/change_request/{{sys_id}}",
+              "protocol": "https",
+              "host": [
+                "dev267889",
+                "service-now",
+                "com"
+              ],
+              "path": [
+                "api",
+                "now",
+                "table",
+                "change_request",
+                "{{sys_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete_CR",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 204\", function () {\r",
+                  "    pm.response.to.have.status(204);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "%eBzU$kw5VC8",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://dev267889.service-now.com/api/now/table/change_request/{{sys_id}}",
+              "protocol": "https",
+              "host": [
+                "dev267889",
+                "service-now",
+                "com"
+              ],
+              "path": [
+                "api",
+                "now",
+                "table",
+                "change_request",
+                "{{sys_id}}"
+              ]
+            }
+          },
+          "response": []
         }
-      },
-      "response": []
+      ]
     },
     {
-      "name": "New Request",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "auth": {
-          "type": "basic",
-          "basic": [
-            {
-              "key": "password",
-              "value": "%eBzU$kw5VC8",
-              "type": "string"
+      "name": "Incident",
+      "item": [
+        {
+          "name": "01_CreateIncident",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "%eBzU$kw5VC8",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                }
+              ]
             },
-            {
-              "key": "username",
-              "value": "admin",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json",
-            "type": "text"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "https://dev267889.service-now.com/api/now/table/incident/408d45b983c732101788cd19feaad304",
-          "protocol": "https",
-          "host": [
-            "dev267889",
-            "service-now",
-            "com"
-          ],
-          "path": [
-            "api",
-            "now",
-            "table",
-            "incident",
-            "408d45b983c732101788cd19feaad304"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "New Request Copy",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "auth": {
-          "type": "basic",
-          "basic": [
-            {
-              "key": "password",
-              "value": "%eBzU$kw5VC8",
-              "type": "string"
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"short_description\": \"Device issue-Laptop created during TL session\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
-            {
-              "key": "username",
-              "value": "admin",
-              "type": "string"
+            "url": {
+              "raw": "https://dev267889.service-now.com/api/now/table/incident",
+              "protocol": "https",
+              "host": [
+                "dev267889",
+                "service-now",
+                "com"
+              ],
+              "path": [
+                "api",
+                "now",
+                "table",
+                "incident"
+              ]
             }
-          ]
+          },
+          "response": []
         },
-        "method": "GET",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json",
-            "type": "text"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "https://dev267889.service-now.com/api/now/table/incident/408d45b983c732101788cd19feaad304",
-          "protocol": "https",
-          "host": [
-            "dev267889",
-            "service-now",
-            "com"
-          ],
-          "path": [
-            "api",
-            "now",
-            "table",
-            "incident",
-            "408d45b983c732101788cd19feaad304"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "PutIncident",
-      "request": {
-        "auth": {
-          "type": "basic",
-          "basic": [
-            {
-              "key": "password",
-              "value": "%eBzU$kw5VC8",
-              "type": "string"
+        {
+          "name": "New Request",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "%eBzU$kw5VC8",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                }
+              ]
             },
-            {
-              "key": "username",
-              "value": "admin",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "PUT",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json",
-            "type": "text"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n    \"short_description\": \"Dolly - Devisce Issue updated using PUT\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "https://dev267889.service-now.com/api/now/table/incident/408d45b983c732101788cd19feaad304",
-          "protocol": "https",
-          "host": [
-            "dev267889",
-            "service-now",
-            "com"
-          ],
-          "path": [
-            "api",
-            "now",
-            "table",
-            "incident",
-            "408d45b983c732101788cd19feaad304"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "PatchIncident",
-      "request": {
-        "auth": {
-          "type": "basic",
-          "basic": [
-            {
-              "key": "password",
-              "value": "%eBzU$kw5VC8",
-              "type": "string"
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
-            {
-              "key": "username",
-              "value": "admin",
-              "type": "string"
+            "url": {
+              "raw": "https://dev267889.service-now.com/api/now/table/incident/408d45b983c732101788cd19feaad304",
+              "protocol": "https",
+              "host": [
+                "dev267889",
+                "service-now",
+                "com"
+              ],
+              "path": [
+                "api",
+                "now",
+                "table",
+                "incident",
+                "408d45b983c732101788cd19feaad304"
+              ]
             }
-          ]
+          },
+          "response": []
         },
-        "method": "PATCH",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json",
-            "type": "text"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n    \"close_code\": \"testDolly\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "https://dev267889.service-now.com/api/now/table/incident/408d45b983c732101788cd19feaad304",
-          "protocol": "https",
-          "host": [
-            "dev267889",
-            "service-now",
-            "com"
-          ],
-          "path": [
-            "api",
-            "now",
-            "table",
-            "incident",
-            "408d45b983c732101788cd19feaad304"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "DeleteIncident",
-      "request": {
-        "auth": {
-          "type": "basic",
-          "basic": [
-            {
-              "key": "password",
-              "value": "%eBzU$kw5VC8",
-              "type": "string"
+        {
+          "name": "PutIncident",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "%eBzU$kw5VC8",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                }
+              ]
             },
-            {
-              "key": "username",
-              "value": "admin",
-              "type": "string"
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"short_description\": \"Dolly - Devisce Issue updated using PUT\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://dev267889.service-now.com/api/now/table/incident/408d45b983c732101788cd19feaad304",
+              "protocol": "https",
+              "host": [
+                "dev267889",
+                "service-now",
+                "com"
+              ],
+              "path": [
+                "api",
+                "now",
+                "table",
+                "incident",
+                "408d45b983c732101788cd19feaad304"
+              ]
             }
-          ]
+          },
+          "response": []
         },
-        "method": "DELETE",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json",
-            "type": "text"
-          }
-        ],
-        "url": {
-          "raw": "https://dev267889.service-now.com/api/now/table/incident/408d45b983c732101788cd19feaad304",
-          "protocol": "https",
-          "host": [
-            "dev267889",
-            "service-now",
-            "com"
-          ],
-          "path": [
-            "api",
-            "now",
-            "table",
-            "incident",
-            "408d45b983c732101788cd19feaad304"
-          ]
+        {
+          "name": "PatchIncident",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "%eBzU$kw5VC8",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"close_code\": \"testDolly\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://dev267889.service-now.com/api/now/table/incident/408d45b983c732101788cd19feaad304",
+              "protocol": "https",
+              "host": [
+                "dev267889",
+                "service-now",
+                "com"
+              ],
+              "path": [
+                "api",
+                "now",
+                "table",
+                "incident",
+                "408d45b983c732101788cd19feaad304"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request Copy",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "%eBzU$kw5VC8",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://dev267889.service-now.com/api/now/table/incident/408d45b983c732101788cd19feaad304",
+              "protocol": "https",
+              "host": [
+                "dev267889",
+                "service-now",
+                "com"
+              ],
+              "path": [
+                "api",
+                "now",
+                "table",
+                "incident",
+                "408d45b983c732101788cd19feaad304"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DeleteIncident",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "%eBzU$kw5VC8",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://dev267889.service-now.com/api/now/table/incident/408d45b983c732101788cd19feaad304",
+              "protocol": "https",
+              "host": [
+                "dev267889",
+                "service-now",
+                "com"
+              ],
+              "path": [
+                "api",
+                "now",
+                "table",
+                "incident",
+                "408d45b983c732101788cd19feaad304"
+              ]
+            }
+          },
+          "response": []
         }
-      },
-      "response": []
+      ]
     },
     {
       "name": "New Request",
